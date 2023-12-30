@@ -22,6 +22,11 @@ public class UserService implements IUserService {
 
 
     @Override
+    public void save(User user) {
+        repository.save(user);
+    }
+
+    @Override
     public List<User> findAll() {
         return repository.findAll();
     }

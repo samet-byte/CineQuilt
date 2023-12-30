@@ -19,6 +19,8 @@ import static com.sametb.cinequiltapp.metadata.paging_sorting.SortMetadata.*;
  * MAYBE SOME OF 'EM. WHO KNOWS?
  */
 
+
+// sıralama ve sayfalama için
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("${endpoint.metadatas-search}")

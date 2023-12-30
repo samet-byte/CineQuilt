@@ -64,6 +64,19 @@ public class UserController {
         return ResponseEntity.ok().body(user);
     }
 
+    @DeleteMapping("/{username}")
+    public ResponseEntity<?> delete(
+            @PathVariable String username,
+            @RequestBody DeleteUserRequest request,
+            Principal connectedUser
+    ) {
+        Optional<User> dUser = service.delete(username, request, connectedUser);
+        return ResponseEntity.ok().body(dUser);
+    }
+
+    // Ayarlar
+    // Settings
+    // Şifre, ülke değiştir
     @PatchMapping("change/password")
     public ResponseEntity<?> changePassword(
           @RequestBody ChangePasswordRequest request,
@@ -80,15 +93,5 @@ public class UserController {
     ) {
         service.changeCountry(country, connectedUser);
         return ResponseEntity.ok().build();
-    }
-
-    @DeleteMapping("/{username}")
-    public ResponseEntity<?> delete(
-            @PathVariable String username,
-            @RequestBody DeleteUserRequest request,
-            Principal connectedUser
-    ) {
-        Optional<User> dUser = service.delete(username, request, connectedUser);
-        return ResponseEntity.ok().body(dUser);
     }
 }

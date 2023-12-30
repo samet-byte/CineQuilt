@@ -1,9 +1,13 @@
 package com.sametb.cinequiltapp.auth;
 
+import com.sametb.cinequiltapp._custom.RandomPasswordGeneratorKt;
 import com.sametb.cinequiltapp._custom.SamTextFormat;
 import com.sametb.cinequiltapp.config.ServerProperties;
 import com.sametb.cinequiltapp.mail.SmtpGmailSenderService;
 import com.sametb.cinequiltapp.config.LogoutService;
+import com.sametb.cinequiltapp.user.IUserService;
+import com.sametb.cinequiltapp.user.User;
+import com.sametb.cinequiltapp.user.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 
 import static com.sametb.cinequiltapp._custom.CustomFunsKt.prettyJsonMaker;
-
+import static com.sametb.cinequiltapp._custom.RandomPasswordGeneratorKt.hashPassword;
 
 
 @RestController
@@ -27,6 +31,7 @@ public class AuthenticationController {
     private final LogoutService logoutService;
     private final SmtpGmailSenderService gmailSenderService;
     private final ServerProperties serverProperties;
+    private final IUserService userService;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
@@ -87,4 +92,32 @@ public class AuthenticationController {
     ) {
         logoutService.logout(request, response, null);
     }
+
+
+    @PostMapping("/reset-password-request")
+    public ResponseEntity<?> resetPasswordRequest(
+            @RequestBody RefreshPasswordRequest request
+    ) {
+        try {
+
+            User user = userService.findByUsernameOrEmail(request.getEmail());
+            if (user == null) {
+                return ResponseEntity.badRequest().build();
+            }
+            String newPassword = RandomPasswordGeneratorKt.generateRandomPassword(8);
+            user.setPassword(hashPassword(newPassword));
+            userService.save(user);
+            gmailSenderService.sendEmail(
+                    user.getEmail(),
+                    "Password Reset Request",
+                    "Your new password is: " + newPassword
+            );
+            SamTextFormat.Companion.doneMessage("New password sent to: " + user.getEmail() + " ->  " + newPassword);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            SamTextFormat.Companion.errorMessage("Error: " + e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
 }

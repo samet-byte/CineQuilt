@@ -30,6 +30,7 @@ public interface MetadataRepository extends JpaRepository<Metadata, Integer> {
 
     Optional<Metadata> findByTitle(String title);
 
+    @Deprecated
     @Query(value = """
     select * from 
     get_by_column_and_value_sort_by_column_and_order

@@ -13,12 +13,16 @@ import java.util.List;
 
 import static com.sametb.cinequiltapp._custom.CustomFunsKt.decodeString;
 
+// düzenleme,  ekleme
+//crud
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("${endpoint.metadatas}")
 @CrossOrigin("http://localhost:3000")
 public class MetadataController {
 
+//    new MetadataService(repository);
     private final MetadataService service;
     private final IFavService favoritesService;
     private final EpisodeService episodeService;
@@ -34,6 +38,7 @@ public class MetadataController {
     }
 
 
+    @Deprecated
     @GetMapping
     public ResponseEntity<List<Metadata>> findAllMetadatasBy(
             @RequestParam(required = false) String col,

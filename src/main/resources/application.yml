@@ -48,10 +48,10 @@ application:
 mail-service:
   image: src/main/assets/rose_pedal_heart.png
   direct-link: https://sametb.com/ad
-  greet: "Welcome to CineQuilt!"
-  slogan: "Let our cinematic warmth wrap you with joy!"
-  farewell: "We'll miss you :("
-  signature: "CineQuilt Team"
+  greet: Welcome to CineQuilt!
+  slogan: Let our cinematic warmth wrap you with joy!
+  farewell: We'll miss you :(
+  signature: CineQuiltApp
 
 
 

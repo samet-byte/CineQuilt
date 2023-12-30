@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+import static com.sametb.cinequiltapp.episode.EpisodeBuilder.fromTVShowRequest;
+
 /**
  * @author Samet Bayat.
  * Date: 12.12.2023 1:52 PM
@@ -36,7 +38,7 @@ public class EpisodeController {
     public EpisodeResponse saveTVShow(@NotNull @RequestBody EpisodeRequest episodeRequest) {
         Series cSeries = seriesService.findById(episodeRequest.getMetadataId());
         SamTextFormat.Companion.create(cSeries.toString()).cyan().print();
-        Episode episode = Episode.fromTVShowRequest(episodeRequest, cSeries);
+        Episode episode = fromTVShowRequest(episodeRequest, cSeries);
         Episode savedEpisode = episodeService.save(episode);
         return EpisodeResponse.fromTVShow(savedEpisode);
     }

@@ -34,6 +34,11 @@ public class MailContentBuilder {
     @Value("${mail-service.signature}")
     private String signature;
 
+    @Deprecated
+    public String removeWhiteSpaces(String myString){
+        return myString.replaceAll("[^a-zA-Z0-9 ]", "");
+    }
+
     public String bodyBuilder(String username) {
         return String.format("%s, <br/>\n\n%s", username, slogan);
     }

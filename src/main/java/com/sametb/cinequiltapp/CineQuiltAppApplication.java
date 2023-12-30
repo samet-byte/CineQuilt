@@ -15,8 +15,8 @@ public class CineQuiltAppApplication {
     public static void main(String[] args) {
         SpringApplication.run(CineQuiltAppApplication.class, args);
     }
-    @Autowired
-    public void setAndGetDefaultUserTokens(AuthenticationService service) {
-        setAndShowDefaultAdminAndManager(service);
-    }
+//    @Autowired
+//    public void setAndGetDefaultUserTokens(AuthenticationService service) {
+//        setAndShowDefaultAdminAndManager(service);
+//    }
 }

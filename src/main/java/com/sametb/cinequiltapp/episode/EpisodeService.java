@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static com.sametb.cinequiltapp.episode.EpisodeBuilder.areSame;
+
 /**
  * @author Samet Bayat.
  * Date: 12.12.2023 1:52 PM
@@ -53,7 +55,7 @@ public class EpisodeService implements IEpisodeService {
 
         Episode uEpisode = episodeRepository.findById(id).orElseThrow();
 
-        if (Episode.areSame(episodeRequest, uEpisode)) return false;
+        if (areSame(episodeRequest, uEpisode)) return false;
 
         BeanUtils.copyProperties(episodeRequest, uEpisode, "id", "series");
 

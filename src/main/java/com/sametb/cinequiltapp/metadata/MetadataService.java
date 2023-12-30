@@ -20,7 +20,6 @@ import static com.sametb.cinequiltapp.metadata.MetadataBuilder.buildMetadataWith
 
 @Service
 @RequiredArgsConstructor
-
 public class MetadataService implements IMetadataService {
 
     private final MetadataRepository repository;
@@ -47,6 +46,7 @@ public class MetadataService implements IMetadataService {
         return repository.findAll();
     }
 
+    @Deprecated
     @Override
     public List<Metadata> findAllBy(
             @Nullable String col,
@@ -132,21 +132,4 @@ public class MetadataService implements IMetadataService {
         }
     }
 
-//    // Helper method to get null property names of an object
-//    @NotNull
-//    private String[] getNullPropertyNames(Object source) {
-//        final BeanWrapper src = new BeanWrapperImpl(source);
-//        java.beans.PropertyDescriptor[] pds = src.getPropertyDescriptors();
-//
-//        Set<String> emptyNames = new HashSet<>();
-//        for (java.beans.PropertyDescriptor pd : pds) {
-//            // Check if value is null and add the property name to the set
-//            if (src.getPropertyValue(pd.getName()) == null) {
-//                emptyNames.add(pd.getName());
-//            }
-//        }
-//
-//        String[] result = new String[emptyNames.size()];
-//        return emptyNames.toArray(result);
-//    }
 }
