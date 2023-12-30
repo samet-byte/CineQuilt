@@ -20,7 +20,7 @@ import java.io.File;
  * MAYBE SOME OF 'EM. WHO KNOWS?
  */
 
-// mail
+// mail işlemleri
 
 @Service
 @RequiredArgsConstructor
