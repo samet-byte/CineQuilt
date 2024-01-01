@@ -20,13 +20,11 @@ Web Design and Applications Term Project Backend
 ### Installing
 
 1. Clone the repository
-
 ```bash
 git clone https://github.com/samet-byte/CineQuiltAppBackend.git
 ```
 
 2. Install dependencies
-
 ```bash
 gradle build
 ```
@@ -41,9 +39,19 @@ create database cine_demo_db2
 
 ```yml
 # application-key.yml
+
+## for film buff
+gpt:
+  api-key: *
 key:
   mail-username: example@gmail.com
-  mail-password: pass word 1234 5678 
+  mail-password: pass word 1234 5678
+
+#for PostgreSQL Google Cloud
+g_cloud_psql:
+  url: jdbc:postgresql://global_ip:5432/cine_demo_db2
+  username: *
+  password: *
 ```
 
 5. Run the application
