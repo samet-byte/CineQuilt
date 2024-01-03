@@ -7,10 +7,7 @@ import java.util.List;
 
 @Getter
 @Setter
-//@Builder
 @SuperBuilder
-//@AllArgsConstructor
-//@NoArgsConstructor
 @RequiredArgsConstructor
 public class MetadataRequest {
     private Integer id;

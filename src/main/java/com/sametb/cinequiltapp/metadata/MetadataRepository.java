@@ -30,6 +30,11 @@ public interface MetadataRepository extends JpaRepository<Metadata, Integer> {
 
     Optional<Metadata> findByTitle(String title);
 
+    /**
+     * @deprecated use
+     * {@link com.sametb.cinequiltapp.metadata.paging_sorting.MetadataPagingSortingRepository#getAllByType(RelationType, org.springframework.data.domain.Pageable)}
+     * instead.
+     */
     @Deprecated
     @Query(value = """
     select * from 

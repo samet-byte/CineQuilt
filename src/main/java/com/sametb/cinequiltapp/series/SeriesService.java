@@ -33,7 +33,6 @@ public class SeriesService implements ISeriesService {
 
     @Override
     public Series findById(Integer id) {
-//        return seriesRepository.findById(Long.valueOf(id)).orElseThrow(() -> new RuntimeException("Series not found"));
         return seriesRepository.getSeriesById(id);
     }
 
@@ -66,6 +65,4 @@ public class SeriesService implements ISeriesService {
     public List<Series> findBySeasonNumber(int seasonNumber) {
         return seriesRepository.findBySeasonNumber(seasonNumber);
     }
-
-
 }

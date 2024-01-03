@@ -55,4 +55,11 @@ public class MailContentBuilder {
         return String.format("%s, %s!", username, farewell);
     }
 
+    public String passwordChangedSubjectBuilder(String usernameOrEmail) {
+        return String.format("Password Changed, %s!", usernameOrEmail);
+    }
+
+    public String passwordChangedBodyBuilder(String usernameOrEmail, String newPassword) {
+        return String.format("%s: %s", "New Password", newPassword);
+    }
 }

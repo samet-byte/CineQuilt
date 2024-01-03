@@ -21,6 +21,7 @@ public class UserController {
     private final UserService service;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('admin:read')")
     public ResponseEntity<?> findByUsernameOrEmail(
             Principal connectedUser
     ) {
@@ -29,6 +30,7 @@ public class UserController {
     }
 
     @GetMapping("/{username}")
+    @PreAuthorize("hasAuthority('admin:read')")
     public ResponseEntity<?> findByUsername(
             @PathVariable String username
     ) {
@@ -37,6 +39,7 @@ public class UserController {
     }
 
     @GetMapping("/id/{id}")
+    @PreAuthorize("hasAuthority('admin:read')")
     public ResponseEntity<?> findById(@PathVariable Integer id) {
         UserResponse user = UserResponse.fromUser(service.findByIDNonOptional(id));
         return ResponseEntity.ok().body(user);

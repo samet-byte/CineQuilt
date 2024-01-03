@@ -19,12 +19,13 @@ public interface IUserService {
     UserResponse findByUsernameOrEmail(Principal connectedUser);
 
     User findByUsernameOrEmail(String usernameOrEmail);
+    @Deprecated
+    Optional<User> findByUsernameOrEmail(String username, String email);
 
     Optional<User> makeAdmin(String username);
 
     User findByUsername(String username);
 
-    Optional<User> findByUsernameOrEmail(String username, String email);
 
     Optional<User> findById(Integer id);
 

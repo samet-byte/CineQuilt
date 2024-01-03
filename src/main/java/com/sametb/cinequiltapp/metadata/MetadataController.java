@@ -22,7 +22,7 @@ import static com.sametb.cinequiltapp._custom.CustomFunsKt.decodeString;
 @CrossOrigin("http://localhost:3000")
 public class MetadataController {
 
-//    new MetadataService(repository);
+//  instead -> ... =  new MetadataService(repository);
     private final MetadataService service;
     private final IFavService favoritesService;
     private final EpisodeService episodeService;
@@ -34,7 +34,7 @@ public class MetadataController {
             @RequestBody MetadataRequest request
     ) {
         Metadata savedMetadata = service.save(request);
-        return ResponseEntity.accepted().body(savedMetadata); //.build();
+        return ResponseEntity.accepted().body(savedMetadata);
     }
 
 
@@ -106,11 +106,10 @@ public class MetadataController {
             @PathVariable Integer id
     ) {
         try{
-            //todo: if series_delete episodes
             episodeService.deleteAllBySeriesId(id);
             favoritesService.deleteFavouriteByMetadataId(id);
             service.deleteMetadata(id);
-            return ResponseEntity.accepted().build(); // .body(deletedMetadata); //.build();}
+            return ResponseEntity.accepted().build();
     } catch (Exception e) {
             SamTextFormat.Companion.errorMessage(e.getMessage());
             return ResponseEntity.notFound().build();

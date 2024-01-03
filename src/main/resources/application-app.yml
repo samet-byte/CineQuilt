@@ -9,6 +9,7 @@ endpoint:
   management-allow-all: ${base}/management/**
   users: ${base}/users
   metadatas: ${base}/metadatas
+  movies: ${base}/movies
   metadatas-search: ${endpoint.metadatas}/search
   favs: ${base}/favs
   series: ${base}/series

@@ -13,8 +13,6 @@ public interface IMetadataService {
 
     List<Metadata> findAll();
 
-//    List<Metadata> findAllBy(@Nullable String by, @Nullable String order);
-
     List<Metadata> findAllBy(
             @Nullable String col,
             @Nullable String val,

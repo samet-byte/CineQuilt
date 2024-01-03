@@ -14,7 +14,7 @@ import java.util.Optional;
 
 public class MetadataBuilder {
 
-    static Metadata buildMetadataWithRequest(@NotNull MetadataRequest request) {
+    public static Metadata buildMetadataWithRequest(@NotNull MetadataRequest request) {
         RelationType relationType = (request.getType() != null) ? request.getType() : RelationType.MOVIE;
 
         return Metadata.builder()
@@ -31,8 +31,6 @@ public class MetadataBuilder {
                 .description(request.getDescription())
                 .genre(request.getGenre())
                 .type(relationType)
-//                .seasonNumber(request.getSeason())
-//                .episodeNumber(request.getEpisode())
                 .build();
     }
 }

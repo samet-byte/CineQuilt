@@ -16,13 +16,7 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @SuperBuilder
 @RequiredArgsConstructor
-//@NoArgsConstructor
-//@AllArgsConstructor
 public class SeriesRequest extends MetadataRequest {
     private int episodeNumber;
     private int seasonNumber;
-
-    //private String episodeTitle;
-    //private String episodeDescription;
-
 }

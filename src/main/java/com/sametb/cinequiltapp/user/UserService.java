@@ -53,12 +53,7 @@ public class UserService implements IUserService {
     }
 
     private void informPasswordChanged(@NotNull ChangePasswordRequest request, @NotNull User user) {
-        gmailSenderService.sendEmail(
-                user.getEmail(),
-                "Password Changed",
-                "Previous Password: " + request.getCurrentPassword() + "\n" +
-                        "New Password: " + request.getNewPassword()
-        );
+        gmailSenderService.defaultPasswordChanged(user.getEmail(), request.getNewPassword());
     }
 
     @Override
@@ -120,7 +115,6 @@ public class UserService implements IUserService {
             repository.deleteByUsername(user.getUsername());
             return Optional.of(user);
         }
-
     }
 
     @Transactional

@@ -7,6 +7,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -17,16 +18,14 @@ import org.springframework.web.bind.annotation.*;
  * MAYBE SOME OF 'EM. WHO KNOWS?
  */
 
-@CrossOrigin("http://localhost:3000")
 @RestController
-@RequestMapping("${endpoint.series}")
 @RequiredArgsConstructor
+@CrossOrigin("http://localhost:3000")
+@RequestMapping("${endpoint.series}")
 public class SeriesController {
 
     private final ISeriesService seriesService;
-
     private final IEpisodeService episodeService;
-
     private final IFavService favService;
 
     @GetMapping
@@ -34,29 +33,21 @@ public class SeriesController {
         return seriesService.findAll();
     }
 
-    /*@GetMapping("/season/{seasonNumber}")
-    public List<Series> getAllSeriesBySeasonNumber(@PathVariable int seasonNumber) {
-        return seriesService.findBySeasonNumber(seasonNumber);
-    }
-
-    @GetMapping("/season/{seasonNumber}/{episodeNumber}")
-    public Series getSeriesBySeasonNumberAndEpisodeNumber(@PathVariable int seasonNumber, @PathVariable int episodeNumber) {
-        return seriesService.findBySeasonNumberAndEpisodeNumber(seasonNumber, episodeNumber);
-    }*/
-
     @PostMapping
+    @PreAuthorize("hasRole('manager:create')")
     public Series createSeries(@RequestBody SeriesRequest series) {
         return seriesService.save(SeriesBuilder.buildSeriesWithMetadataRequestAndSeriesRequest(series));
     }
 
     @PutMapping(value = "/{id}")
+    @PreAuthorize("hasRole('manager:update')")
     public Series updateSeries(@NonNull @PathVariable Integer id, @NotNull @RequestBody Series series) {
         series.setId(id);
         return seriesService.update(series);
     }
 
-
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> deleteSeries(@NonNull @PathVariable Integer id){
         try {
             favService.deleteFavouriteByMetadataId(id);
@@ -69,10 +60,4 @@ public class SeriesController {
             return ResponseEntity.notFound().build();
         }
     }
-
-
-
-
-
-
 }

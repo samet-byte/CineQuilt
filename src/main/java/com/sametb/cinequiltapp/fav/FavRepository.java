@@ -14,7 +14,6 @@ import java.util.List;
  */
 
 public interface FavRepository extends JpaRepository<Favourite, Long> {
-
     Favourite getByUserIdAndMetadataId(Integer userId, Integer metadataId);
 
     List<Favourite> getAllByUserId(Integer userId);

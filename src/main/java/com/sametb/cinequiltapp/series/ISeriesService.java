@@ -23,6 +23,10 @@ public interface ISeriesService {
 
     Series update(Series series);
 
+    /**
+     * @deprecated Use {@link #findBySeasonNumber(int)} instead.
+     */
+    @Deprecated
     Series findBySeasonNumberAndEpisodeNumber(int seasonNumber, int episodeNumber);
 
     List<Series> findBySeasonNumber(int seasonNumber);

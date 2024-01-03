@@ -13,12 +13,9 @@ import java.util.List;
  */
 
 public interface SeriesRepository extends JpaRepository<Series, Integer> {
-
     Series findBySeasonNumberAndEpisodeNumber(int seasonNumber, int episodeNumber);
 
     List<Series> findBySeasonNumber(int seasonNumber);
 
     Series getSeriesById(Integer id);
-
-//    void deleteById(Integer id);
 }

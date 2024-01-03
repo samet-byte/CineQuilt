@@ -28,10 +28,11 @@ import java.util.Set;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Metadata {
 
+    // todo: UUID, Long to Integer -> GCloud consuming behaviour
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JoinColumn(name = "metadata_id")
-    private Integer id; // UUID?
+    private Integer id;
 
     @Column(name = "title", nullable = false) // length = 255 default
     @JoinColumn(name = "metadata_title")

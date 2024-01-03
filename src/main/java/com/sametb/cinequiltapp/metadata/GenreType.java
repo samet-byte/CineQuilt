@@ -12,10 +12,12 @@ import lombok.RequiredArgsConstructor;
  * MAYBE SOME OF 'EM. WHO KNOWS?
  */
 
+/**
+ * @deprecated more simplistic approach followed.
+ */
 @Deprecated
 @Getter
 @AllArgsConstructor
-//@RequiredArgsConstructor
 public enum GenreType {
     ACTION(28, "Action"),
     ADVENTURE(12, "Adventure"),

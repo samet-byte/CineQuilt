@@ -40,13 +40,15 @@ public class SmtpGmailSenderService {
             SamTextFormat.Companion.doneMessage(String.format("Mail sent to %s", toEmail));
 
         } catch (Exception e) {
-            e.printStackTrace();
             SamTextFormat.Companion.errorMessage(String.format("Error sending mail to %s", toEmail));
         }
     }
 
 
-    @Deprecated
+    /**
+     * This class/method/field has been deprecated since version 1.0.0. :(
+     */
+    @Deprecated(since = "1.0.0", forRemoval = true)
     public void sendEmailWithAttachment(String toEmail, String subject, String body, String attachmentPath) {
         MimeMessage message = emailSender.createMimeMessage();
 
@@ -103,10 +105,12 @@ public class SmtpGmailSenderService {
         String body = mailContentBuilder.bodyBuilder(username);
 
 
-        sendEmail(
+        sendEmailWithImageAndLink(
                 toEmail,
                 subject,
-                body
+                body,
+                mailContentBuilder.getMailImage(),
+                mailContentBuilder.getDirectLink()
         );
     }
 
@@ -115,13 +119,12 @@ public class SmtpGmailSenderService {
         String body = mailContentBuilder.farewellBodyBuilder(username);
         sendEmail(toEmail, subject, body);
     }
+
+    public void defaultPasswordChanged(String toEmail, String newPassword){
+        String subject = mailContentBuilder.passwordChangedSubjectBuilder(toEmail);
+        String body = mailContentBuilder.passwordChangedBodyBuilder(toEmail, newPassword);
+        sendEmail(toEmail, subject, body);
+    }
 }
 
 
-//        sendEmailWithImageAndLink(
-//                toEmail,
-//                subject,
-//                body,
-//                mailContentBuilder.getMailImage(),
-//                mailContentBuilder.getDirectLink()
-//        );

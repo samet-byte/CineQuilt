@@ -18,8 +18,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class FavRequest {
-
     private Integer metadataId;
-//    private String user;
     private Integer userId;
 }

@@ -19,15 +19,13 @@ import java.util.Set;
  * MAYBE SOME OF 'EM. WHO KNOWS?
  */
 
-@EqualsAndHashCode(callSuper = true) // ??
+@EntityListeners(AuditingEntityListener.class)
+@SuperBuilder
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-//@Builder
-@SuperBuilder
-@EntityListeners(AuditingEntityListener.class)
-//@RequiredArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @Table(name = "series")
 public class Series extends Metadata {
 

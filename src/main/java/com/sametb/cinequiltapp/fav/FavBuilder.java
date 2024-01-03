@@ -1,5 +1,6 @@
 package com.sametb.cinequiltapp.fav;
 
+import com.sametb.cinequiltapp.metadata.IMetadataService;
 import com.sametb.cinequiltapp.metadata.MetadataService;
 import com.sametb.cinequiltapp.user.IUserService;
 import com.sametb.cinequiltapp.user.UserService;
@@ -43,7 +44,7 @@ public class FavBuilder {
     static Favourite buildFavWithRequest(
             @NotNull FavRequest favRequest,
             @NonNull IUserService userService,
-            @NonNull MetadataService metadataService
+            @NonNull IMetadataService metadataService
             ) {
         return Favourite.builder()
                 .user(userService.findByIDNonOptional(favRequest.getUserId()))

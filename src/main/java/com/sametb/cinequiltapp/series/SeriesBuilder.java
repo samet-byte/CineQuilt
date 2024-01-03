@@ -14,21 +14,12 @@ import java.util.Optional;
  */
 
 public class SeriesBuilder {
-
-
-
     static Series buildSeriesWithMetadataRequestAndSeriesRequest(
             @NotNull SeriesRequest seriesRequest
     ) {
-//        RelationType relationType = (seriesRequest.getType() != null) ? seriesRequest.getType() : RelationType.MOVIE;
-
-
         return Series.builder()
                 .episodeNumber(seriesRequest.getEpisodeNumber())
                 .seasonNumber(seriesRequest.getSeasonNumber())
-                //.episodeTitle(seriesRequest.getEpisodeTitle())
-                //.episodeDescription(seriesRequest.getEpisodeDescription())
-
                 .id(seriesRequest.getId())
                 .title(seriesRequest.getTitle())
                 .director(Optional.ofNullable(seriesRequest.getDirector()).orElse("N/A"))

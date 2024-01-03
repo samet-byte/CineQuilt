@@ -1,5 +1,6 @@
 package com.sametb.cinequiltapp.fav;
 
+import com.sametb.cinequiltapp.metadata.IMetadataService;
 import com.sametb.cinequiltapp.metadata.MetadataService;
 import com.sametb.cinequiltapp.user.IUserService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.sametb.cinequiltapp.fav.FavBuilder.*;
+import static com.sametb.cinequiltapp.fav.FavToggle.getStringObjectMapIsFavedResponse;
 
 /**
  * @author Samet Bayat.
@@ -29,10 +31,8 @@ import static com.sametb.cinequiltapp.fav.FavBuilder.*;
 public class FavController {
 
         private final IFavService favouriteService;
-
         private final IUserService userService;
-
-        private final MetadataService metadataService;
+        private final IMetadataService metadataService;
 
 
     @PostMapping
@@ -87,62 +87,21 @@ public class FavController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    /*@PostMapping("/isFaved")
-    public ResponseEntity<IsFaved> isFaved(
-            @RequestBody FavRequest favRequest,
-            @RequestParam(required = false) boolean changeState
-    ) {
-        Favourite favourite = favouriteService.getByUserIdAndMetadataId(favRequest.getUserId(), favRequest.getMetadataId());
-
-        boolean shouldChangeState = false || changeState;
-        boolean isFavedResult = false;
-
-        if(favourite == null) {
-            if (shouldChangeState) {
-                favouriteService.saveFavourite(buildFavWithRequest(favRequest, userService, metadataService));
-                isFavedResult = true;
-            }
-        } else {
-            if (shouldChangeState) {
-                favouriteService.deleteFavourite(favourite.getId());
-            } else {
-                isFavedResult = true;
-            }
-        }
-        IsFaved isFaved =  new IsFaved(isFavedResult);
-        return new ResponseEntity<>(isFaved, HttpStatus.OK);
-    }*/
-
     @PostMapping("/isFaved")
     public ResponseEntity<Map<String, Object>> isFaved(
             @RequestBody FavRequest favRequest,
             @RequestParam(required = false) boolean changeState
     ) {
-        Favourite favourite = favouriteService.getByUserIdAndMetadataId(favRequest.getUserId(), favRequest.getMetadataId());
-
-        boolean shouldChangeState = false || changeState;
-        boolean isFavedResult = false;
-
-        if (favourite == null) {
-            if (shouldChangeState) {
-                favouriteService.saveFavourite(buildFavWithRequest(favRequest, userService, metadataService));
-                isFavedResult = true;
-            }
-        } else {
-            if (shouldChangeState) {
-                favouriteService.deleteFavourite(favourite.getId());
-            } else {
-                isFavedResult = true;
-            }
-        }
-
-        Map<String, Object> response = new HashMap<>();
-        response.put("faved", isFavedResult);
+        Map<String, Object> response = getStringObjectMapIsFavedResponse(
+                favRequest,
+                changeState,
+                favouriteService,
+                userService,
+                metadataService
+        );
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-
-
 
 
 }
