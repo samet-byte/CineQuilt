@@ -1,4 +1,50 @@
-# Cine Quilt App
+
+![
+    0
+](<ss/Screenshot 2023-12-31 at 5.59.46 PM.png>)
+![
+    1
+](<ss/Screenshot 2023-12-31 at 6.04.16 PM.png>)  ![
+    4
+](<ss/Screenshot 2024-01-02 at 11.03.43 PM.png>) ![
+    5
+](<ss/Screenshot 2024-01-02 at 11.04.41 PM.png>) ![
+    6
+](<ss/Screenshot 2024-01-02 at 11.05.04 PM.png>) ![
+    7
+](<ss/Screenshot 2024-01-02 at 11.05.58 PM.png>) ![
+    8
+](<ss/Screenshot 2024-01-02 at 11.07.08 PM.png>) ![
+    9
+](<ss/Screenshot 2024-01-02 at 11.08.28 PM.png>)
+![
+    10
+](<ss/Screenshot 2024-01-02 at 11.09.00 PM.png>) ![
+    11
+](<ss/Screenshot 2024-01-02 at 11.09.12 PM.png>) ![
+    12
+](<ss/Screenshot 2024-01-02 at 11.09.21 PM.png>) ![
+    13
+](<ss/Screenshot 2024-01-02 at 11.11.29 PM.png>) ![
+    14
+](<ss/Screenshot 2024-01-02 at 11.14.20 PM.png>) ![
+    15
+](<ss/Screenshot 2024-01-02 at 11.22.27 PM.png>) ![
+    16
+](<ss/Screenshot 2024-01-02 at 11.24.10 PM.png>) ![
+    17
+](<ss/Screenshot 2024-01-02 at 11.33.40 PM.png>) ![
+    18
+](<ss/Screenshot 2024-01-02 at 11.33.53 PM.png>) ![
+    19
+](<ss/Screenshot 2024-01-02 at 11.34.06 PM.png>) ![
+    20
+](<CleanShot 2024-01-03 at 4 .37.03@2x-1.png>)  ![
+    2
+](<ss/Screenshot 2023-12-31 at 6.27.41 PM.png>)  
+
+
+# Getting Started: CineQuilt React App
 
 Web Design and Applications Term Project Backend
 
@@ -71,9 +117,8 @@ gradle bootRun
 - [Git](https://git-scm.com/) - Version Control System
 - [GitHub](https://github.com/samet-byte/cinequilt-app-v2) - Code Hosting Platform
 
-## Authors
+## Author
 - [Samet Bayat](https://sametb.com/)
-- [Ramazan Alper]()
 
 ## License
 
@@ -129,11 +174,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 > import requests
 > 
 > bearer_token = 'TOKEN_GOES_HERE'
-> # content_id = 641
-> # query = 'Sherlock'
 > content_id = input("Enter content id: ")
 > query = input("Enter query: ")
-> api_key = 'e7ce7a37cf9ed48b92b0d582160622a7'
+> api_key = 'TMDB_API_KEY_GOES_HERE'
 > 
 > def post_episode(episode_number, episode_name, episode_description, season_number):
 >     # Replace the following placeholder values with your actual endpoint and request body
